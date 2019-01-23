@@ -1,0 +1,84 @@
+
+    // add parentheses in list on first and last
+    public static ArrayList<LexicalUnit> setParentheses(ArrayList<LexicalUnit> l) {
+        ArrayList<LexicalUnit> tmp = l;
+        tmp.add(0, new LexicalUnit(LexicalType.LP));
+        tmp.add(tmp.size() - 1, new LexicalUnit(LexicalType.RP));
+        return tmp;
+    }
+
+    // return list of expr that added parentheses
+    public static ArrayList<LexicalUnit> getTransExpr(Environment env) throws Exception {
+        LexicalAnalyzerImpl la = env.getInput();
+        LexicalUnit unit = la.peekUnit();
+
+        ArrayList<LexicalUnit> getList = new ArrayList<>();
+
+        while (ExprNode.isMatch(unit.getType())) {
+            ArrayList<LexicalUnit> contents = new ArrayList<>();
+
+            // "- <operand>" -> "(-1) * <operand>"
+            if (unit.getType() == LexicalType.SUB) {
+                ArrayList<LexicalUnit> ungetList = new ArrayList<>();
+
+                ValueImpl val = new ValueImpl("-1", ValueType.INTEGER);
+                LexicalUnit minusUnit = new LexicalUnit(LexicalType.INTVAL, val);
+                LexicalUnit operator = new LexicalUnit(LexicalType.MUL);
+
+                la.get(); // execute "-"
+                ungetList.add(minusUnit); // -1
+                ungetList.add(operator); // *
+                la.ungetStream(ungetList);
+                continue;
+            }
+            // "(<expr>)" -> "((<expr>))"
+            else if (unit.getType() == LexicalType.LP) {
+                la.get(); // LP will be added
+                contents.addAll(ExprNode.getTransExpr(env));
+                la.get(); // RP will be added
+            }
+            // "func(<expr>, ...)" -> "(func(<expr>, ...))"
+            else if (unit.getType() == LexicalType.NAME && la.expect(LexicalType.LP, 2)) {
+                contents.add(la.get()); // func name
+                int lpCount = 0;
+                // (args... )
+                do {
+                    LexicalUnit tmp = la.get();
+                    if (tmp.getType() == LexicalType.LP) {
+                        lpCount++;
+                    } else if (tmp.getType() == LexicalType.RP) {
+                        lpCount--;
+                    }
+                    contents.add(tmp);
+                } while (lpCount > 0);
+            }
+            // "<operand> <operator>" -> "(<operand>) <operator>"
+            else {
+                contents.add(la.get()); // operand
+            }
+
+            contents = setParentheses(contents);
+            getList.addAll(contents);
+
+            if (OPE_VAL.containsKey(la.peekUnit().getType())) {
+                getList.add(la.get()); // operator
+                unit = la.peekUnit();
+            } else {
+                break;
+            }
+        }
+
+        return getList;
+
+    }
+
+    // set parentheses to all operand
+    public static boolean setExpr(Environment env) throws Exception {
+        ArrayList<LexicalUnit> ungetList = ExprNode.getTransExpr(env);
+        ungetList = setParentheses(ungetList);
+
+        // unget all
+        env.getInput().ungetStream(ungetList);
+
+        return true;
+    }
