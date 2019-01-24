@@ -72,7 +72,11 @@ public class ExprNode extends Node {
             }
             // case "<variable><operator>"
             else {
-                operand = env.getVariable(la.get().getValue().getSValue());
+                String varName = la.get().getValue().getSValue();
+                operand = env.getVariable(varName);
+                if(operand == null) {
+                    throw new Exception("undefined variable : " + varName + " in " + la.getLine());
+                }
             }
         }
         // case "(<expr>)"

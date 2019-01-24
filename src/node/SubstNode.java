@@ -40,10 +40,10 @@ public class SubstNode extends Node {
 		env.getInput().get(); // execute "="
 		expr = ExprNode.getHandler(env.getInput().peekUnit().getType(), env);
 
-//		env.entryVar(leftvar, expr.parse());
-
 		parseCheck(expr, "invalid expression");
 //		leftvar.setValue(expr.getValue());
+
+		env.entryVar(leftvar);
 
 		return true;
 	}

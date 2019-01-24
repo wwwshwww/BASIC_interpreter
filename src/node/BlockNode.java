@@ -8,8 +8,7 @@ public class BlockNode extends Node {
 
 	public static final Set<LexicalType> FIRST = new HashSet<LexicalType>(){{
 		addAll(IfBlockNode.FIRST);
-		addAll(WhileBlockNode.FIRST);
-		addAll(DoBlockNode.FIRST);
+		addAll(LoopBlockNode.FIRST);
 	}};
 	
 	public static boolean isMatch(LexicalType type) {
@@ -18,8 +17,7 @@ public class BlockNode extends Node {
 	
 	public static Node getHandler(LexicalType type, Environment env) {
 		if(IfBlockNode.isMatch(type)) return IfBlockNode.getHandler(type, env);
-		if(WhileBlockNode.isMatch(type)) return WhileBlockNode.getHandler(type, env);
-		if(DoBlockNode.isMatch(type)) return DoBlockNode.getHandler(type, env);
+		if(LoopBlockNode.isMatch(type)) return LoopBlockNode.getHandler(type, env);
 		return null;
 	}
 
