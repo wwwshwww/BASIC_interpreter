@@ -54,4 +54,8 @@ public class CondNode extends Node {
         return true;
     }
 
+    public String toString(){
+        return condUnit + "[" + left + ", " + right + "]";
+    }
+
 }

@@ -54,7 +54,7 @@ public class ExprListNode extends Node {
     public String toString(){
         String result = "";
         for (Node node : exprList) {
-            result += node + ",";
+            result += node + ", ";
         }
         return result;
     }

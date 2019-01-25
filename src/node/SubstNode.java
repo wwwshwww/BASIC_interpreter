@@ -53,6 +53,6 @@ public class SubstNode extends Node {
 	}
 
 	public String toString(){
-		return getVarName() + expr;
+		return getVarName() + "[" + expr + "]";
 	}
 }

@@ -53,4 +53,8 @@ public class Variable extends Node {
 		return name;
 	}
 
+	public String toString(){
+		return name;
+	}
+
 }

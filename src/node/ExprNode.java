@@ -165,8 +165,8 @@ public class ExprNode extends Node {
     }
 
     public String toString(){
-        if(single) return "[" + value + "]";
-        else if(bin != null) return "[" + bin + "]";
+        if(single) return value.toString();
+        else if(bin != null) return bin.toString();
         else return null;
     }
 

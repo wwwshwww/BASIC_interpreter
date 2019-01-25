@@ -65,4 +65,8 @@ public class ForStmtNode extends Node{
         return true;
     }
 
+    public String toString(){
+        return "FOR[[" + controlVar + "->" + toVal + "][" + stmtList + "]]";
+    }
+
 }
