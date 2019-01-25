@@ -16,7 +16,7 @@ public class ExprListNode extends Node {
         addAll(ExprNode.FIRST);
     }};
 
-    private Node childList, expr;
+    private List<Node> exprList = new ArrayList<>();
 
     private ExprListNode(Environment env){
         super(env, NodeType.EXPR_LIST);
@@ -34,20 +34,29 @@ public class ExprListNode extends Node {
     public boolean parse() throws Exception {
         LexicalAnalyzerImpl la = env.getInput();
         LexicalType firstType = la.peekUnit().getType();
+        Node node;
 
-        expr = ExprNode.getHandler(firstType, env);
-        parseCheck(expr, "invalid argument");
+        node = ExprNode.getHandler(firstType, env);
+        parseCheck(node, "invalid argument");
+        exprList.add(node);
 
         // check comma
-        if(la.expect(LexicalType.COMMA, 1)) {
-            la.get();
-            LexicalUnit following = la.peekUnit();
-            childList = ExprListNode.getHandler(following.getType(), env);
-            parseCheck(childList, "syntax error : wrong definition of argument");
-
+        while(la.expect(LexicalType.COMMA, 1)) {
+            la.get(); // execute ","
+            node = ExprListNode.getHandler(la.peekUnit().getType(), env);
+            parseCheck(node, "syntax error : wrong definition of argument");
+            exprList.add(node);
         }
 
         return true;
+    }
+
+    public String toString(){
+        String result = "";
+        for (Node node : exprList) {
+            result += node + ",";
+        }
+        return result;
     }
 
 }

@@ -51,4 +51,8 @@ public class SubstNode extends Node {
 	public String getVarName(){
 		return leftvar.getName();
 	}
+
+	public String toString(){
+		return getVarName() + expr;
+	}
 }

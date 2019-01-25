@@ -64,5 +64,8 @@ public class CallFuncNode extends Node {
 
     }
 
+    public String toString(){
+        return funcName + args;
+    }
 
 }

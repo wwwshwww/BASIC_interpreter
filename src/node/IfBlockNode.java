@@ -83,4 +83,16 @@ public class IfBlockNode extends Node {
         return true;
 
     }
+
+    public String toString(){
+        String result = "IF" + cond + "[" + stmt + "]";
+        if(elseStmt != null){
+            result += "ELSE" + "[" + elseStmt + "]";
+        }else if(childElse != null){
+            result += childElse;
+        }
+
+        return result;
+
+    }
 }

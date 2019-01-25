@@ -115,6 +115,7 @@ public class ExprNode extends Node {
         // ex: (1)
         if (single) {
             value = unit;
+            la.get(); // execute unit
             return true;
         }
 
@@ -141,7 +142,7 @@ public class ExprNode extends Node {
             int max = 0;
             int coo = 0;
             for (int i = 0; i < operators.size(); i++) {
-                LexicalUnit tor = operators.get(i);
+                LexicalType tor = operators.get(i).getType();
                 int val = OPERATOR.get(tor);
                 if (val > max) {
                     max = val;
@@ -161,6 +162,12 @@ public class ExprNode extends Node {
 
         return true;
 
+    }
+
+    public String toString(){
+        if(single) return "[" + value + "]";
+        else if(bin != null) return "[" + bin + "]";
+        else return null;
     }
 
 }

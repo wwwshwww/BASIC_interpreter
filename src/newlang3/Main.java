@@ -7,7 +7,7 @@ import java.io.InputStream;
 public class Main {
 
 	public static void main(String[] args) throws Exception {
-		String path = "test2.bas";
+		String path = "test1.bas";
 		if(args.length > 0) {
 			path = args[0];
 		}

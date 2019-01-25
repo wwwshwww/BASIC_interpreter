@@ -12,5 +12,8 @@ public class BinaryNode extends Node{
         this.right = right;
     }
 
+    public String toString(){
+        return operator + "[" + left + ", " + right + "]";
+    }
 
 }

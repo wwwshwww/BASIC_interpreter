@@ -74,4 +74,17 @@ public class ElseBlockNode extends Node{
         return true;
     }
 
+    public String toString(){
+        String result = "";
+        if(isElse){
+            result = "ELSE[" + stmt + "]";
+        }else if(isElseIf){
+            result = "ELSEIF" + cond + "[" + stmt + "]";
+            if(childElse != null){
+                result += childElse;
+            }
+        }
+        return result;
+    }
+
 }

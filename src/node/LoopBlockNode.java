@@ -107,4 +107,27 @@ public class LoopBlockNode extends Node{
         return true;
     }
 
+    public String toString(){
+        String pref, con, content;
+
+        String result;
+
+        con = cond.toString();
+        content = "[" + stmtList + "]";
+
+        if(condRequired) {
+            pref = "WHILE LOOP";
+        }else{
+            pref = "UNTIL LOOP";
+        }
+
+        if(isDoLoop){
+            result = pref + "[" + con + content + "]";
+        }else{
+            result = pref + "[" + content + con + "]";
+        }
+
+        return result;
+    }
+
 }
