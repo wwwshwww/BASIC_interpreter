@@ -24,7 +24,7 @@ public class Variable extends Node {
         if (lu.getType() == LexicalType.NAME) {
             String name = lu.getValue().getSValue();
             Variable var;
-            if (env.isEntriedVar(name)) {
+            if (env.isVarExist(name)) {
                 var = env.getVariable(lu.getValue().getSValue());
             } else {
                 var = new Variable(name);

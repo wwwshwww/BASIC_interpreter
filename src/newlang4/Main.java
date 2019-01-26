@@ -31,7 +31,7 @@ public class Main {
 
         if (program != null && program.parse()) {
             System.out.println(program);
-            //System.out.println(program.getValue());
+            System.out.println(program.getValue());
         } else {
             System.out.println("syntax error : 1");
         }
