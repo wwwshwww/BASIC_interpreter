@@ -42,7 +42,7 @@ public class ExprListNode extends Node {
         // check comma
         while (la.expect(LexicalType.COMMA, 1)) {
             la.get(); // execute ","
-            node = ExprListNode.getHandler(la.peekUnit().getType(), env);
+            node = ExprNode.getHandler(la.peekUnit().getType(), env);
             parseCheck(node, "syntax error : wrong definition of argument");
             exprList.add(node);
         }
