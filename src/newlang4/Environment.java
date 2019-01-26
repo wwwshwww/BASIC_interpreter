@@ -13,6 +13,9 @@ public class Environment {
 
     static {
         func_table.put("PRINT", new Print());
+        func_table.put("SQRT", new Sqrt());
+        func_table.put("MAX", new Max());
+        func_table.put("MIN", new Min());
     }
 
     public Environment(LexicalAnalyzerImpl input) {

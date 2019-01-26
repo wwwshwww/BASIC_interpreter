@@ -69,10 +69,9 @@ public class CallFuncNode extends Node {
     public Value getValue() throws Exception{
         if(env.isFuncExist(funcName)){
             Function func = env.getFunction(funcName);
-            func.invoke((ExprListNode)args);
+            return func.invoke((ExprListNode)args);
         }else{
             throw new Exception("undefined function : " + funcName);
         }
-        return null;
     }
 }

@@ -51,6 +51,14 @@ public class ValueImpl implements Value {
         return type;
     }
 
+    public static boolean isNum(Value v) {
+        return v.getType() == ValueType.INTEGER || v.getType() == ValueType.DOUBLE;
+    }
+
+    public static boolean isBothInt(Value v1, Value v2) {
+        return v1.getType() == ValueType.INTEGER && v2.getType() == ValueType.INTEGER;
+    }
+
     public static double getNumVal(Value v) throws Exception {
         switch (v.getType()) {
             case INTEGER:

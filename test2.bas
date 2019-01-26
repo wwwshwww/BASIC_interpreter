@@ -13,5 +13,7 @@ FOR i = 1 TO 10
     ENDIF
 NEXT i
 PRINT i + 1
-PRINT d
+PRINT SQRT(d)
+PRINT MAX(d, i)
+PRINT MIN(d, 20)
 END

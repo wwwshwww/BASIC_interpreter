@@ -3,7 +3,7 @@ package node;
 import newlang4.*;
 
 import static newlang4.LexicalType.*;
-import static newlang4.ValueImpl.getNumVal;
+import static newlang4.ValueImpl.*;
 
 public class BinaryNode extends Node {
     Node left, right;
@@ -18,14 +18,6 @@ public class BinaryNode extends Node {
 
     public String toString() {
         return operator + "[" + left + ", " + right + "]";
-    }
-
-    public static boolean isNum(Value v) {
-        return v.getType() == ValueType.INTEGER || v.getType() == ValueType.DOUBLE;
-    }
-
-    public static boolean isBothInt(Value v1, Value v2) {
-        return v1.getType() == ValueType.INTEGER && v2.getType() == ValueType.INTEGER;
     }
 
     public Value getValue() throws Exception {
