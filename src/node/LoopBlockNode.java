@@ -124,14 +124,8 @@ public class LoopBlockNode extends Node {
     }
 
     public Value getValue() throws Exception {
-        boolean judge;
-
-        if (condRequired) judge = true;
-        else judge = false;
-
         if (isDoLoop) stmtList.getValue();
-
-        while (cond.getValue().getBValue() == judge) {
+        while (cond.getValue().getBValue() == condRequired) {
             stmtList.getValue();
         }
         return null;
