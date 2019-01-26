@@ -1,9 +1,6 @@
 package node;
 
-import newlang4.Environment;
-import newlang4.LexicalAnalyzerImpl;
-import newlang4.LexicalType;
-import newlang4.NodeType;
+import newlang4.*;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -84,6 +81,19 @@ public class ElseBlockNode extends Node {
             }
         }
         return result;
+    }
+
+    public Value getValue() throws Exception{
+        if(isElse) {
+            stmt.getValue();
+        }else if(isElseIf){
+            if(cond.getValue().getBValue()){
+                stmt.getValue();
+            }else{
+                childElse.getValue();
+            }
+        }
+        return null;
     }
 
 }
