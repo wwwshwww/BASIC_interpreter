@@ -76,13 +76,15 @@ public class LoopBlockNode extends Node {
     public boolean parse() throws Exception {
         LexicalAnalyzerImpl la = env.getInput();
 
-        // case while
+        // case <WHILE> <cond> <NL> <stmt_list> <WEND> <NL>
         if (la.expect(LexicalType.WHILE, 1)) {
             isDo = false;
             isDoLoop = false;
             parsePrefix();
             parseContent();
-        } else if (la.expect(LexicalType.DO, 1)) {
+        }
+        // case <DO> ~
+        else if (la.expect(LexicalType.DO, 1)) {
             isDo = true;
             la.get(); // execute "DO"
 
@@ -104,9 +106,7 @@ public class LoopBlockNode extends Node {
 
     public String toString() {
         String pref, con, content;
-
         String result;
-
         con = cond.toString();
         content = "[" + stmtList + "]";
 
@@ -115,14 +115,26 @@ public class LoopBlockNode extends Node {
         } else {
             pref = "UNTIL_LOOP";
         }
-
         if (isDoLoop) {
             result = pref + "[" + con + content + "]";
         } else {
             result = pref + "[" + content + con + "]";
         }
-
         return result;
+    }
+
+    public Value getValue() throws Exception {
+        boolean judge;
+
+        if (condRequired) judge = true;
+        else judge = false;
+
+        if (isDoLoop) stmtList.getValue();
+
+        while (cond.getValue().getBValue() == judge) {
+            stmtList.getValue();
+        }
+        return null;
     }
 
 }
