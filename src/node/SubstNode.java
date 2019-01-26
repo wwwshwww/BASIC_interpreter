@@ -37,7 +37,7 @@ public class SubstNode extends Node {
     }
 
     public boolean parse() throws Exception {
-        leftvar = Variable.getVar(env, env.getInput().get());
+        leftvar = Variable.getVar(env.getInput().get());
         env.getInput().get(); // execute "="
         expr = ExprNode.getHandler(env.getInput().peekUnit().getType(), env);
 

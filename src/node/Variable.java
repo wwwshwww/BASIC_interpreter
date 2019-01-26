@@ -10,24 +10,13 @@ public class Variable extends Node {
         type = NodeType.VARIABLE;
     }
 
-    public Variable(String name) {
-        this.name = name;
-    }
-
     public Variable(LexicalUnit lu) {
         name = lu.getValue().getSValue();
     }
 
-    public static Variable getVar(Environment env, LexicalUnit lu) {
+    public static Variable getVar(LexicalUnit lu) {
         if (lu.getType() == LexicalType.NAME) {
-            String name = lu.getValue().getSValue();
-            Variable var;
-            if (env.isVarExist(name)) {
-                var = env.getVariable(lu.getValue().getSValue());
-            } else {
-                var = new Variable(name);
-            }
-            return var;
+            return new Variable(lu);
         }
         return null;
     }

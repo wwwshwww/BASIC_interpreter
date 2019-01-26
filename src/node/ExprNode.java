@@ -72,7 +72,7 @@ public class ExprNode extends Node {
             }
             // case "<variable><operator>"
             else {
-                operand = Variable.getVar(env, la.get());
+                operand = Variable.getVar(la.get());
             }
         }
         // case "(<expr>)"
