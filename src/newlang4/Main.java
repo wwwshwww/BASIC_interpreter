@@ -16,12 +16,12 @@ public class Main {
         LexicalUnit first;
         Environment env;
         Node program;
-        String path = "test1.bas";
+        String path = "test2.bas";
         if (args.length > 0) {
             path = args[0];
         }
 
-        System.out.println("basic parser");
+        System.out.println("basic interpreter");
         fin = new FileInputStream(path);
         lex = new LexicalAnalyzerImpl(fin);
         env = new Environment(lex);
@@ -30,8 +30,11 @@ public class Main {
         program = ProgramNode.getHandler(first.getType(), env);
 
         if (program != null && program.parse()) {
+            System.out.println("============parsed============");
             System.out.println(program);
-            System.out.println(program.getValue());
+            System.out.println("============output============");
+            program.getValue();
+            System.out.println("==============================");
         } else {
             System.out.println("syntax error : 1");
         }

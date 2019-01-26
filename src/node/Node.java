@@ -59,4 +59,12 @@ public class Node {
         }
     }
 
+    // update variable's value
+    public void updateVar(Node n){
+        if(n.getType() == NodeType.VARIABLE) {
+            String varName = ((Variable) n).getName();
+            ((Variable) n).setValue(env.getVariable(varName).getValue());
+        }
+    }
+
 }

@@ -62,11 +62,4 @@ public class ValueImpl implements Value {
         }
     }
 
-    public void setDvalue(double dvalue) {
-        this.dvalue = dvalue;
-    }
-
-    public void setIvalue(int ivalue) {
-        this.ivalue = ivalue;
-    }
 }

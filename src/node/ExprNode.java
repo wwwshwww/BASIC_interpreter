@@ -150,7 +150,7 @@ public class ExprNode extends Node {
             Node left = operands.remove(coo);
             LexicalUnit operator = operators.remove(coo);
 
-            Node bin = new BinaryNode(operator, left, right);
+            Node bin = new BinaryNode(env, operator, left, right);
             operands.add(coo, bin);
         }
 
@@ -172,8 +172,9 @@ public class ExprNode extends Node {
 
     public Value getValue() throws Exception {
         if (single) return value.getValue();
-        else if (bin != null) return bin.getValue();
-        else return null;
+
+        updateVar(bin);
+        return bin.getValue();
     }
 
 }

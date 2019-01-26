@@ -9,7 +9,8 @@ public class BinaryNode extends Node {
     Node left, right;
     LexicalUnit operator;
 
-    public BinaryNode(LexicalUnit operator, Node left, Node right) {
+    public BinaryNode(Environment env, LexicalUnit operator, Node left, Node right) {
+        super(env, NodeType.BINARY);
         this.operator = operator;
         this.left = left;
         this.right = right;
@@ -28,6 +29,8 @@ public class BinaryNode extends Node {
     }
 
     public Value getValue() throws Exception {
+        updateVar(left);
+        updateVar(right);
         LexicalType opeType = operator.getType();
         Value leftVal = left.getValue();
         Value rightVal = right.getValue();
@@ -35,10 +38,6 @@ public class BinaryNode extends Node {
         ValueType rightType = rightVal.getType();
 
         Value result;
-
-        if (leftVal == null || rightVal == null) {
-            throw new Exception("can't calculate with null");
-        }
 
         if ((isNum(leftVal) && !isNum(rightVal)) || (!isNum(leftVal) && isNum(rightVal))) {
             throw new Exception("can't calculate " + leftType + " and " + rightType);

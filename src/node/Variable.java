@@ -1,17 +1,15 @@
 package node;
 
-import newlang4.Environment;
-import newlang4.LexicalType;
-import newlang4.LexicalUnit;
-import newlang4.Value;
+import newlang4.*;
 
 public class Variable extends Node {
     private String name;
     private Value v;
 
-    /**
-     * Creates a new instance of variable
-     */
+    {
+        type = NodeType.VARIABLE;
+    }
+
     public Variable(String name) {
         this.name = name;
     }

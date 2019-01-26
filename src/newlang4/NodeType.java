@@ -19,5 +19,6 @@ public enum NodeType {
     BOOL_CONSTANT,
     END,
 	VARIABLE,
-	ELSE_BLOCK
+	ELSE_BLOCK,
+	BINARY
 }
