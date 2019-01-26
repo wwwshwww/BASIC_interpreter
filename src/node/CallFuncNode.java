@@ -31,7 +31,7 @@ public class CallFuncNode extends Node {
     }
 
     public static Node getHandler(LexicalType type, Environment env) throws Exception {
-        if(FIRST.contains(type)) return new CallFuncNode(env);
+        if (FIRST.contains(type)) return new CallFuncNode(env);
         else return null;
     }
 
@@ -64,7 +64,7 @@ public class CallFuncNode extends Node {
 
     }
 
-    public String toString(){
+    public String toString() {
         return funcName + "[" + args + "]";
     }
 

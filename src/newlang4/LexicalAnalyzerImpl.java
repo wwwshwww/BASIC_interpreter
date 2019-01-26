@@ -131,12 +131,11 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer {
         int ci = reader.read();
         target += (char) ci;
 
-        while(reader.ready()){
+        while (reader.ready()) {
             ci = reader.read();
-            if(reserves.containsKey(target + (char)ci)){
-                target += (char)ci;
-            }
-            else{
+            if (reserves.containsKey(target + (char) ci)) {
+                target += (char) ci;
+            } else {
                 reader.unread(ci);
                 break;
             }
@@ -229,7 +228,7 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer {
         }
     }
 
-    public int getLine(){
+    public int getLine() {
         return line;
     }
 }

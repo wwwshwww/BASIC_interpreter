@@ -50,7 +50,7 @@ public class IfBlockNode extends Node {
             stmt = StmtListNode.getHandler(la.peekUnit().getType(), env);
             parseCheck(stmt, "error in IF");
 
-            if(!la.expect(LexicalType.ENDIF, 1)){
+            if (!la.expect(LexicalType.ENDIF, 1)) {
                 childElse = ElseBlockNode.getHandler(la.peekUnit().getType(), env);
                 parseCheck(childElse, "syntax error");
             }
@@ -84,11 +84,11 @@ public class IfBlockNode extends Node {
 
     }
 
-    public String toString(){
+    public String toString() {
         String result = "IF[" + cond + "[" + stmt + "]]";
-        if(elseStmt != null){
+        if (elseStmt != null) {
             result += "ELSE" + "[" + elseStmt + "]";
-        }else if(childElse != null){
+        } else if (childElse != null) {
             result += childElse;
         }
 

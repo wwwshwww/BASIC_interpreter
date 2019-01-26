@@ -41,7 +41,7 @@ public class StmtListNode extends Node {
     @Override
     public boolean parse() throws Exception {
         while (true) {
-            try{
+            try {
                 env.getInput().goodByeNL();
 
                 Node handler;
@@ -57,7 +57,7 @@ public class StmtListNode extends Node {
 
                 parseCheck(handler, "syntax error");
                 child.add(handler);
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -65,16 +65,16 @@ public class StmtListNode extends Node {
         return true;
     }
 
-    public String toString(){
+    public String toString() {
         StringBuilder sb = new StringBuilder();
-        if(child.isEmpty()) return "null";
+        if (child.isEmpty()) return "null";
         child.stream().forEachOrdered(n -> sb.append(n + ";"));
         return new String(sb);
     }
 
-    public Value getValue() throws Exception{
+    public Value getValue() throws Exception {
         child.stream().forEachOrdered(n -> {
-            try{
+            try {
                 n.getValue();
             } catch (Exception e) {
                 e.printStackTrace();

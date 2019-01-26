@@ -158,15 +158,15 @@ public class ExprNode extends Node {
         return true;
     }
 
-    public String toString(){
-        if(single) return value.toString();
-        else if(bin != null) return bin.toString();
+    public String toString() {
+        if (single) return value.toString();
+        else if (bin != null) return bin.toString();
         else return null;
     }
 
-    public Value getValue() throws Exception{
-        if(single) return value.getValue();
-        else if(bin != null) return bin.getValue();
+    public Value getValue() throws Exception {
+        if (single) return value.getValue();
+        else if (bin != null) return bin.getValue();
         else return null;
     }
 

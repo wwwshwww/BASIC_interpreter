@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class LoopBlockNode extends Node{
+public class LoopBlockNode extends Node {
 
     /*
     | <WHILE> <cond> <NL> <stmt_list> <WEND> <NL>
@@ -28,7 +28,7 @@ public class LoopBlockNode extends Node{
     Node cond;
     Node stmtList;
 
-    private LoopBlockNode(Environment env){
+    private LoopBlockNode(Environment env) {
         super(env, NodeType.LOOP_BLOCK);
     }
 
@@ -36,14 +36,14 @@ public class LoopBlockNode extends Node{
         return FIRST.contains(type);
     }
 
-    public static Node getHandler(LexicalType type, Environment env){
+    public static Node getHandler(LexicalType type, Environment env) {
         if (isMatch(type)) return new LoopBlockNode(env);
         else return null;
     }
 
-    public void parsePrefix() throws Exception{
+    public void parsePrefix() throws Exception {
         LexicalAnalyzerImpl la = env.getInput();
-         // execute "WHILE" or "DO"
+        // execute "WHILE" or "DO"
 
         condRequired = la.get().getType() == LexicalType.WHILE;
 
@@ -54,60 +54,55 @@ public class LoopBlockNode extends Node{
         la.get(); // execute "NL"
     }
 
-    public void parseContent() throws Exception{
+    public void parseContent() throws Exception {
         LexicalAnalyzerImpl la = env.getInput();
         LexicalType endLoopToken;
 
         stmtList = StmtListNode.getHandler(la.peekUnit().getType(), env);
         parseCheck(stmtList, "syntax error in LOOP");
 
-        if(isDo) endLoopToken = LexicalType.LOOP;
+        if (isDo) endLoopToken = LexicalType.LOOP;
         else endLoopToken = LexicalType.WEND;
 
         nextCheck(endLoopToken, "without LOOP in block");
         la.get(); // execute "LOOP" or "WEND"
 
-        if(!isDoLoop){
+        if (!isDoLoop) {
             nextCheck(LexicalType.NL, "without NL after LOOP");
             la.get(); // execute "NL"
         }
     }
 
-    public boolean parse() throws Exception{
+    public boolean parse() throws Exception {
         LexicalAnalyzerImpl la = env.getInput();
 
         // case while
-        if(la.expect(LexicalType.WHILE, 1)){
+        if (la.expect(LexicalType.WHILE, 1)) {
             isDo = false;
             isDoLoop = false;
             parsePrefix();
             parseContent();
-        }
-        else if(la.expect(LexicalType.DO, 1)){
+        } else if (la.expect(LexicalType.DO, 1)) {
             isDo = true;
             la.get(); // execute "DO"
 
-            if(la.expect(LexicalType.NL, 1)){
+            if (la.expect(LexicalType.NL, 1)) {
                 isDoLoop = true;
                 la.get(); // execute "NL"
                 parseContent();
                 parsePrefix();
-            }
-
-            else if(la.expect(LexicalType.WHILE, 1) || la.expect(LexicalType.UNTIL, 1)){
+            } else if (la.expect(LexicalType.WHILE, 1) || la.expect(LexicalType.UNTIL, 1)) {
                 isDoLoop = false;
                 parsePrefix();
                 parseContent();
-            }
-
-            else{
+            } else {
                 throw new Exception("syntax error after DO");
             }
         }
         return true;
     }
 
-    public String toString(){
+    public String toString() {
         String pref, con, content;
 
         String result;
@@ -115,15 +110,15 @@ public class LoopBlockNode extends Node{
         con = cond.toString();
         content = "[" + stmtList + "]";
 
-        if(condRequired) {
+        if (condRequired) {
             pref = "WHILE_LOOP";
-        }else{
+        } else {
             pref = "UNTIL_LOOP";
         }
 
-        if(isDoLoop){
+        if (isDoLoop) {
             result = pref + "[" + con + content + "]";
-        }else{
+        } else {
             result = pref + "[" + content + con + "]";
         }
 

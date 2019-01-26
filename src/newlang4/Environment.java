@@ -18,16 +18,16 @@ public class Environment {
         return input;
     }
 
-    public void entryVar(Variable v){
+    public void entryVar(Variable v) {
         var_table.put(v.getName(), v);
     }
 
-    public boolean isEntriedVar(String s){
+    public boolean isEntriedVar(String s) {
         return var_table.containsKey(s);
     }
 
-    public Variable getVariable(String s){
-        if(isEntriedVar(s)) return var_table.get(s);
+    public Variable getVariable(String s) {
+        if (isEntriedVar(s)) return var_table.get(s);
         else return null;
     }
 }
