@@ -92,11 +92,11 @@ public class IfBlockNode extends Node {
 
     public Value getValue() throws Exception {
         boolean condVal = cond.getValue().getBValue();
-        if(condVal){
+        if (condVal) {
             stmt.getValue();
-        }else{
-            if(elseStmt != null) elseStmt.getValue();
-            else if(childElse != null) childElse.getValue();
+        } else {
+            if (elseStmt != null) elseStmt.getValue();
+            else if (childElse != null) childElse.getValue();
         }
         return null;
     }

@@ -70,7 +70,6 @@ public class ElseBlockNode extends Node {
                 parseCheck(childElse, "syntax error in block");
             }
         }
-
         return true;
     }
 
