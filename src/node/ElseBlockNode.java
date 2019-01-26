@@ -83,13 +83,13 @@ public class ElseBlockNode extends Node {
         return result;
     }
 
-    public Value getValue() throws Exception{
-        if(isElse) {
+    public Value getValue() throws Exception {
+        if (isElse) {
             stmt.getValue();
-        }else if(isElseIf){
-            if(cond.getValue().getBValue()){
+        } else if (isElseIf) {
+            if (cond.getValue().getBValue()) {
                 stmt.getValue();
-            }else{
+            } else {
                 childElse.getValue();
             }
         }
