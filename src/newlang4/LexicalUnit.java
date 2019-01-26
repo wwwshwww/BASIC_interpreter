@@ -9,16 +9,16 @@ public class LexicalUnit {
 	public LexicalUnit(LexicalType this_type) {
 	    type = this_type;
 	}
-	
+
 	public LexicalUnit(LexicalType this_type, ValueImpl this_value) {
 		type = this_type;
 		value = this_value;
 	}
-	
+
 	public Value getValue() {
 		return value;
 	}
-	
+
 	public LexicalType getType() {
 		return type;
 	}
@@ -26,7 +26,7 @@ public class LexicalUnit {
 	public String toString() {
 		switch(type) {
 	    case LITERAL:
-            return "\"" + value.getSValue() + "\"";
+            return value.getSValue();
 	    case NAME:
 	    	return value.getSValue();
 	    case DOUBLEVAL:

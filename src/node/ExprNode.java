@@ -159,7 +159,13 @@ public class ExprNode extends Node {
     }
 
     public String toString() {
-        if (single) return value.toString();
+        if (single) {
+            String vals = value.toString();
+            if(value.getValue().getType() == ValueType.STRING) {
+                vals = "\"" + vals + "\"";
+            }
+            return vals;
+        }
         else if (bin != null) return bin.toString();
         else return null;
     }

@@ -1,5 +1,6 @@
 package newlang4;
 
+import function.*;
 import node.*;
 
 import java.util.HashMap;
@@ -8,10 +9,14 @@ public class Environment {
     private LexicalAnalyzerImpl input;
 
     private HashMap<String, Variable> var_table = new HashMap<>();
-    private HashMap<String, Function> func_table = new HashMap<>();
+    private static HashMap<String, Function> func_table = new HashMap<>();
 
-    public Environment(LexicalAnalyzerImpl my_input) {
-        input = my_input;
+    static {
+        func_table.put("PRINT", new Print());
+    }
+
+    public Environment(LexicalAnalyzerImpl input) {
+        this.input = input;
     }
 
     public LexicalAnalyzerImpl getInput() {
@@ -22,12 +27,21 @@ public class Environment {
         var_table.put(v.getName(), v);
     }
 
-    public boolean isEntriedVar(String s) {
+    public boolean isVarExist(String s) {
         return var_table.containsKey(s);
     }
 
+    public boolean isFuncExist(String s) {
+        return func_table.containsKey(s);
+    }
+
+    public Function getFunction(String s) {
+        if (isFuncExist(s)) return func_table.get(s);
+        else return null;
+    }
+
     public Variable getVariable(String s) {
-        if (isEntriedVar(s)) return var_table.get(s);
+        if (isVarExist(s)) return var_table.get(s);
         else return null;
     }
 }

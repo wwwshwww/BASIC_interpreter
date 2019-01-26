@@ -1,5 +1,6 @@
 package node;
 
+import function.Function;
 import newlang4.*;
 
 import java.util.*;
@@ -65,4 +66,13 @@ public class CallFuncNode extends Node {
         return funcName + "[" + args + "]";
     }
 
+    public Value getValue() throws Exception{
+        if(env.isFuncExist(funcName)){
+            Function func = env.getFunction(funcName);
+            func.invoke((ExprListNode)args);
+        }else{
+            throw new Exception("undefined function : " + funcName);
+        }
+        return null;
+    }
 }

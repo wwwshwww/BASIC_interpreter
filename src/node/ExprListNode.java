@@ -15,7 +15,6 @@ public class ExprListNode extends Node {
     static final Set<LexicalType> FIRST = new HashSet<LexicalType>() {{
         addAll(ExprNode.FIRST);
     }};
-
     private List<Node> exprList = new ArrayList<>();
 
     private ExprListNode(Environment env) {
@@ -49,6 +48,14 @@ public class ExprListNode extends Node {
         }
 
         return true;
+    }
+
+    public int getExprCount() {
+        return exprList.size();
+    }
+
+    public List<Node> getExprList(){
+        return exprList;
     }
 
     public String toString() {
