@@ -1,9 +1,6 @@
 package node;
 
-import newlang4.Environment;
-import newlang4.LexicalAnalyzerImpl;
-import newlang4.LexicalType;
-import newlang4.NodeType;
+import newlang4.*;
 
 import java.util.*;
 
@@ -81,7 +78,6 @@ public class IfBlockNode extends Node {
         }
 
         return true;
-
     }
 
     public String toString() {
@@ -91,8 +87,17 @@ public class IfBlockNode extends Node {
         } else if (childElse != null) {
             result += childElse;
         }
-
         return result;
+    }
 
+    public Value getValue() throws Exception {
+        boolean condVal = cond.getValue().getBValue();
+        if(condVal){
+            stmt.getValue();
+        }else{
+            if(elseStmt != null) elseStmt.getValue();
+            else if(childElse != null) childElse.getValue();
+        }
+        return null;
     }
 }
