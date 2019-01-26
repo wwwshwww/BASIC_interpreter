@@ -52,16 +52,13 @@ public class CallFuncNode extends Node {
             nextCheck(LexicalType.RP, "syntax error : not closed with RP");
 
             la.get(); // execute ")"
-            return true;
         }
         // ver "func <expr_list>"
         else {
             args = ExprListNode.getHandler(secondType, env);
             parseCheck(args, "syntax error : invalid argument");
-
-            return true;
         }
-
+        return true;
     }
 
     public String toString() {
