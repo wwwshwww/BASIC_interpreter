@@ -57,4 +57,15 @@ public class ExprListNode extends Node {
         return new String(sb);
     }
 
+    public Value getValue() throws Exception {
+        exprList.stream().forEach(n -> {
+            try {
+                n.getValue();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        return null;
+    }
+
 }
