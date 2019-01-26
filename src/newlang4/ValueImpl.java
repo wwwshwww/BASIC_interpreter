@@ -61,4 +61,12 @@ public class ValueImpl implements Value {
                 throw new Exception(v + " is not numerical"); // meaningless
         }
     }
+
+    public void setDvalue(double dvalue) {
+        this.dvalue = dvalue;
+    }
+
+    public void setIvalue(int ivalue) {
+        this.ivalue = ivalue;
+    }
 }
