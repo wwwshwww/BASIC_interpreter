@@ -26,13 +26,13 @@ public class LexicalUnit {
 	public String toString() {
 		switch(type) {
 	    case LITERAL:
-            return "LITERAL:\t" + value.getSValue();
+            return "\"" + value.getSValue() + "\"";
 	    case NAME:
-	    	return "NAME:\t" + value.getSValue();
+	    	return value.getSValue();
 	    case DOUBLEVAL:
-	    	return "DOUBLEVAL:\t" + value.getDValue();
+	    	return Double.toString(value.getDValue());
 	    case INTVAL:
-	    	return "INTVAL:\t" + value.getIValue();
+	    	return Integer.toString(value.getIValue());
 	    case IF:
             return ("IF");
 	    case THEN:
@@ -46,7 +46,7 @@ public class LexicalUnit {
 	    case NEXT:
             return ("NEXT");
 	    case SUB:
-            return ("SUB");
+            return ("-");
 	    case DIM:
             return ("DIM");
 	    case AS:
@@ -58,27 +58,27 @@ public class LexicalUnit {
 	    case NL:
             return ("NL");
 	    case EQ:
-            return ("EQ");
+            return ("=");
 	    case LT:
-	    	return ("LT");
+	    	return ("<");
 	    case GT:
-	    	return ("GT");
+	    	return (">");
 	    case LE:
-	    	return ("LE");
+	    	return ("<=");
 	    case GE:
-	    	return ("GE");
+	    	return (">=");
 	    case DOT:
-	    	return ("DOT");
+	    	return (".");
 	    case WHILE:
 	    	return ("WHILE");
 	    case UNTIL:
 	    	return ("UNTIL");
 	    case ADD:
-	    	return ("ADD");
+	    	return ("+");
 	    case MUL:
-	    	return ("MUL");
+	    	return ("*");
 	    case DIV:
-	    	return ("DIV");
+	    	return ("/");
 	    case LP:
 	    	return ("LP");
 	    case RP:
@@ -94,7 +94,7 @@ public class LexicalUnit {
 	    case ELSEIF:
 	    	return ("ELSEIF");
 	    case NE:
-	    	return ("NE");
+	    	return ("<>");
 	    case ENDIF:
 	    	return ("ENDIF");
 	    case DO:

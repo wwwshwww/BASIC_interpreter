@@ -50,4 +50,15 @@ public class ValueImpl implements Value {
 	public ValueType getType() {
 		return type;
 	}
+
+	public static double getNumVal(Value v) throws Exception{
+		switch (v.getType()){
+			case INTEGER:
+				return (double)v.getIValue();
+			case DOUBLE:
+				return v.getDValue();
+			default:
+				throw new Exception(v + " is not numerical"); // meaningless
+		}
+	}
 }

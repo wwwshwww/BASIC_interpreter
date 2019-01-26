@@ -19,23 +19,14 @@ public class Variable extends Node {
 	}
 
 	public static Variable getVar(Environment env, LexicalUnit lu) {
-
-		/*
-		 * String s = first.getValue().getSValue();
-		 * v = my_env.getVariable(s);
-		 * return v;
-		 */
-
 		if (lu.getType() == LexicalType.NAME) {
 			String name = lu.getValue().getSValue();
 			Variable var;
-
 			if(env.isEntriedVar(name)){
 				var = env.getVariable(lu.getValue().getSValue());
 			}else{
 				var = new Variable(name);
 			}
-
 			return var;
 		}
 		return null;

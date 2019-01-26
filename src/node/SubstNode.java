@@ -3,6 +3,7 @@ package node;
 import newlang4.Environment;
 import newlang4.LexicalType;
 import newlang4.NodeType;
+import newlang4.Value;
 
 import java.util.*;
 
@@ -41,9 +42,6 @@ public class SubstNode extends Node {
 		expr = ExprNode.getHandler(env.getInput().peekUnit().getType(), env);
 
 		parseCheck(expr, "invalid expression");
-//		leftvar.setValue(expr.getValue());
-
-		env.entryVar(leftvar);
 
 		return true;
 	}
@@ -54,5 +52,11 @@ public class SubstNode extends Node {
 
 	public String toString(){
 		return getVarName() + "[" + expr + "]";
+	}
+
+	public Value getValue() throws Exception{
+		leftvar.setValue(expr.getValue());
+		env.entryVar(leftvar);
+		return null;
 	}
 }

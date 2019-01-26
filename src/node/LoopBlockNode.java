@@ -116,9 +116,9 @@ public class LoopBlockNode extends Node{
         content = "[" + stmtList + "]";
 
         if(condRequired) {
-            pref = "WHILE LOOP";
+            pref = "WHILE_LOOP";
         }else{
-            pref = "UNTIL LOOP";
+            pref = "UNTIL_LOOP";
         }
 
         if(isDoLoop){

@@ -3,6 +3,7 @@ package node;
 import newlang4.Environment;
 import newlang4.LexicalType;
 import newlang4.NodeType;
+import newlang4.Value;
 
 import java.util.*;
 
@@ -64,18 +65,22 @@ public class StmtListNode extends Node {
         return true;
     }
 
-//	public Value getValue() {
-//		child.stream().foreach(n -> n.getValue());
-//		return null;
-//	}
-
     public String toString(){
         StringBuilder sb = new StringBuilder();
         if(child.isEmpty()) return "null";
-        for (Node node : child) {
-            sb.append(node + ";");
-        }
+        child.stream().forEachOrdered(n -> sb.append(n + ";"));
         return new String(sb);
+    }
+
+    public Value getValue() throws Exception{
+        child.stream().forEachOrdered(n -> {
+            try{
+                n.getValue();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        return null;
     }
 
 }

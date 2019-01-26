@@ -72,11 +72,7 @@ public class ExprNode extends Node {
             }
             // case "<variable><operator>"
             else {
-                String varName = la.get().getValue().getSValue();
-                operand = env.getVariable(varName);
-                if(operand == null) {
-                    throw new Exception("undefined variable : " + varName + " in " + la.getLine());
-                }
+                operand = Variable.getVar(env, la.get());
             }
         }
         // case "(<expr>)"
@@ -159,14 +155,18 @@ public class ExprNode extends Node {
         }
 
         bin = operands.get(0);
-
         return true;
-
     }
 
     public String toString(){
         if(single) return value.toString();
         else if(bin != null) return bin.toString();
+        else return null;
+    }
+
+    public Value getValue() throws Exception{
+        if(single) return value.getValue();
+        else if(bin != null) return bin.getValue();
         else return null;
     }
 

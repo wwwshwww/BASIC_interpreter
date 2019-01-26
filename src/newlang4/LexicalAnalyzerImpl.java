@@ -128,20 +128,18 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer {
 
     private LexicalUnit getSymbol() throws Exception {
         String target = "";
-
         int ci = reader.read();
         target += (char) ci;
 
-        if (!reader.ready()) return new LexicalUnit(LexicalType.EOF);
-
-        if (ci == '=') {
+        while(reader.ready()){
             ci = reader.read();
-            if (ci == '<' || ci == '>') target += (char) ci;
-            else reader.unread(ci);
-        } else if (ci == '<' || ci == '>') {
-            ci = reader.read();
-            if (ci == '=') target += (char) ci;
-            else reader.unread(ci);
+            if(reserves.containsKey(target + (char)ci)){
+                target += (char)ci;
+            }
+            else{
+                reader.unread(ci);
+                break;
+            }
         }
 
         if (reserves.containsKey(target)) {
@@ -166,7 +164,7 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer {
             ci = reader.read();
         } while (ci == ' ' || ci == '\t');
 
-        if (ci == -1) return new LexicalUnit(LexicalType.EOF);
+        if (ci == -1 || !reader.ready()) return new LexicalUnit(LexicalType.EOF);
         reader.unread(ci);
 
         if (('a' <= ci && ci <= 'z') || ('A' <= ci && ci <= 'Z')) {
@@ -220,7 +218,6 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer {
             tmp.add(get());
         }
         unit = tmp.get(tmp.size() - 1);
-
         ungetStream(tmp);
         return unit;
     }

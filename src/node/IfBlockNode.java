@@ -85,7 +85,7 @@ public class IfBlockNode extends Node {
     }
 
     public String toString(){
-        String result = "IF" + cond + "[" + stmt + "]";
+        String result = "IF[" + cond + "[" + stmt + "]]";
         if(elseStmt != null){
             result += "ELSE" + "[" + elseStmt + "]";
         }else if(childElse != null){

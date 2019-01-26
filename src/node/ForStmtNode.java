@@ -69,4 +69,10 @@ public class ForStmtNode extends Node{
         return "FOR[[" + controlVar + "->" + toVal + "][" + stmtList + "]]";
     }
 
+    public Value getValue() throws Exception{
+        controlVar.getValue();
+
+        return null;
+    }
+
 }

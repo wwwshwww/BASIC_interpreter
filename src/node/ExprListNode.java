@@ -52,11 +52,9 @@ public class ExprListNode extends Node {
     }
 
     public String toString(){
-        String result = "";
-        for (Node node : exprList) {
-            result += node + ", ";
-        }
-        return result;
+        StringBuilder sb = new StringBuilder();
+        exprList.stream().forEachOrdered(n -> sb.append(n + ", "));
+        return new String(sb);
     }
 
 }
