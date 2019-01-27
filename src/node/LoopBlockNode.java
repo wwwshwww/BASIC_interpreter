@@ -51,7 +51,7 @@ public class LoopBlockNode extends Node {
         parseCheck(cond, "invalid cond");
 
         nextCheck(LexicalType.NL, "without NL after cond");
-        la.get(); // execute "NL"
+        la.goodByeNL(); // execute "NL"
     }
 
     public void parseContent() throws Exception {
@@ -69,7 +69,7 @@ public class LoopBlockNode extends Node {
 
         if (!isDoLoop) {
             nextCheck(LexicalType.NL, "without NL after LOOP");
-            la.get(); // execute "NL"
+            la.goodByeNL(); // execute "NL"
         }
     }
 
@@ -90,7 +90,7 @@ public class LoopBlockNode extends Node {
 
             if (la.expect(LexicalType.NL, 1)) {
                 isDoLoop = true;
-                la.get(); // execute "NL"
+                la.goodByeNL(); // execute "NL"
                 parseContent();
                 parsePrefix();
             } else if (la.expect(LexicalType.WHILE, 1) || la.expect(LexicalType.UNTIL, 1)) {

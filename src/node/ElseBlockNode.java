@@ -41,7 +41,7 @@ public class ElseBlockNode extends Node {
         if (type == LexicalType.ELSE) {
             isElse = true;
             nextCheck(LexicalType.NL, "without NL after ELSE");
-            la.get(); // execute "NL"
+            la.goodByeNL(); // execute "NL"
 
             stmt = StmtListNode.getHandler(la.peekUnit().getType(), env);
             parseCheck(stmt, "syntax error in ELSE block");
@@ -56,7 +56,7 @@ public class ElseBlockNode extends Node {
             la.get(); // execute "THEN"
 
             nextCheck(LexicalType.NL, "without NL after THEN");
-            la.get(); // execute "NL"
+            la.goodByeNL(); // execute "NL"
 
             stmt = StmtListNode.getHandler(la.peekUnit().getType(), env);
             parseCheck(stmt, "syntax error in ELSEIF");

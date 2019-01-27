@@ -42,7 +42,7 @@ public class IfBlockNode extends Node {
         // case <if_prefix> <NL> <stmt_list> <else_block> <ENDIF> <NL>
         if (la.expect(LexicalType.NL, 1)) {
             nextCheck(LexicalType.NL, "without NL after THEN");
-            la.get(); // execute "NL"
+            la.goodByeNL(); // execute "NL"
 
             stmt = StmtListNode.getHandler(la.peekUnit().getType(), env);
             parseCheck(stmt, "error in IF");
@@ -56,7 +56,7 @@ public class IfBlockNode extends Node {
             la.get(); // execute "ENDIF"
 
             nextCheck(LexicalType.NL, "without NL after ENDIF");
-            la.get(); // execute "NL"
+            la.goodByeNL(); // execute "NL"
         }
         // case <if_prefix> <stmt> <NL>
         //	    <if_prefix> <stmt> <ELSE> <stmt> <NL>
@@ -65,7 +65,7 @@ public class IfBlockNode extends Node {
             parseCheck(stmt, "error in IF");
 
             if (la.expect(LexicalType.NL, 1)) {
-                la.get(); // execute "NL"
+                la.goodByeNL(); // execute "NL"
             } else {
                 nextCheck(LexicalType.ELSE, "syntax error");
                 la.get(); // execute "ELSE"
@@ -73,7 +73,7 @@ public class IfBlockNode extends Node {
                 parseCheck(elseStmt, "error in ELSE");
 
                 nextCheck(LexicalType.NL, "without NL after ELSE case");
-                la.get(); // execute "NL"
+                la.goodByeNL(); // execute "NL"
             }
         }
 
