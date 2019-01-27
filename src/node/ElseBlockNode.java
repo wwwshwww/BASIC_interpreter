@@ -89,7 +89,7 @@ public class ElseBlockNode extends Node {
         } else if (isElseIf) {
             if (cond.getValue().getBValue()) {
                 stmt.getValue();
-            } else {
+            } else if(childElse != null){
                 childElse.getValue();
             }
         }
