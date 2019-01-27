@@ -1,6 +1,6 @@
 package node;
 
-import newlang4.*;
+import analyzer.*;
 
 public class Variable extends Node {
     private String name;

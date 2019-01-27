@@ -1,10 +1,9 @@
 package function;
 
-import newlang4.Value;
-import newlang4.ValueImpl;
+import analyzer.Value;
 import node.ExprListNode;
 
-import static newlang4.ValueImpl.*;
+import static analyzer.ValueImpl.*;
 
 public class Min extends Function {
     public Value invoke(ExprListNode args) throws Exception {

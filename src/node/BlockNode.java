@@ -1,7 +1,7 @@
 package node;
 
-import newlang4.Environment;
-import newlang4.LexicalType;
+import analyzer.Environment;
+import analyzer.LexicalType;
 
 import java.util.*;
 

@@ -1,6 +1,6 @@
 package node;
 
-import newlang4.*;
+import analyzer.*;
 
 import java.util.Arrays;
 import java.util.HashSet;

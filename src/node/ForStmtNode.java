@@ -1,12 +1,12 @@
 package node;
 
-import newlang4.*;
+import analyzer.*;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import static newlang4.ValueImpl.getNumVal;
+import static analyzer.ValueImpl.getNumVal;
 
 public class ForStmtNode extends Node {
 

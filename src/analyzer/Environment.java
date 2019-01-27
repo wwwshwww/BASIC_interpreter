@@ -1,4 +1,4 @@
-package newlang4;
+package analyzer;
 
 import function.*;
 import node.*;

@@ -1,7 +1,7 @@
 package node;
 
 import function.Function;
-import newlang4.*;
+import analyzer.*;
 
 import java.util.*;
 

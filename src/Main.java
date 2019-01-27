@@ -1,8 +1,8 @@
 import java.io.FileInputStream;
 
-import newlang4.Environment;
-import newlang4.LexicalAnalyzerImpl;
-import newlang4.LexicalUnit;
+import analyzer.Environment;
+import analyzer.LexicalAnalyzerImpl;
+import analyzer.LexicalUnit;
 import node.Node;
 import node.ProgramNode;
 

@@ -1,11 +1,11 @@
 package function;
 
-import newlang4.Value;
-import newlang4.ValueImpl;
-import newlang4.ValueType;
+import analyzer.Value;
+import analyzer.ValueImpl;
+import analyzer.ValueType;
 import node.ExprListNode;
 
-import static newlang4.ValueImpl.*;
+import static analyzer.ValueImpl.*;
 
 public class Sqrt extends Function {
     public Value invoke(ExprListNode args) throws Exception {

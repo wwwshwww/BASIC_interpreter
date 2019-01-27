@@ -1,4 +1,4 @@
-package newlang4;
+package analyzer;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

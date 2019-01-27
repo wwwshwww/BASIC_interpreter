@@ -1,9 +1,9 @@
 package node;
 
-import newlang4.*;
+import analyzer.*;
 
-import static newlang4.LexicalType.*;
-import static newlang4.ValueImpl.*;
+import static analyzer.LexicalType.*;
+import static analyzer.ValueImpl.*;
 
 public class BinaryNode extends Node {
     Node left, right;

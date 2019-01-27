@@ -1,4 +1,4 @@
-package newlang4;
+package analyzer;
 
 public interface LexicalAnalyzer {
     public LexicalUnit get() throws Exception;

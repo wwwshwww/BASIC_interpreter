@@ -1,6 +1,6 @@
 package function;
 
-import newlang4.Value;
+import analyzer.Value;
 import node.ExprListNode;
 
 public class Print extends Function {

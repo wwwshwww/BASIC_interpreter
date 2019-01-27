@@ -1,4 +1,4 @@
-package newlang4;
+package analyzer;
 
 public interface Value {
 //    実装すべきコンストラクタ

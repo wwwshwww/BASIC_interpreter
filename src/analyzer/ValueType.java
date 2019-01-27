@@ -1,4 +1,4 @@
-package newlang4;
+package analyzer;
 
 public enum ValueType {
 	VOID,
