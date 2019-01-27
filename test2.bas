@@ -7,7 +7,9 @@ FOR i = 1 TO 10
             d = d * 2
         LOOP WHILE d < 1000
     ELSEIF i = 5 THEN
-        PRINT "Fucking"
+        PRINT "five"
+    ELSEIF i = 8 THEN
+        PRINT "eight"
     ELSE
         PRINT "Yeah!"
     ENDIF
