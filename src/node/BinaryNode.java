@@ -31,10 +31,6 @@ public class BinaryNode extends Node {
 
         Value result;
 
-        if ((isNum(leftVal) && !isNum(rightVal)) || (!isNum(leftVal) && isNum(rightVal))) {
-            throw new Exception("can't calculate " + leftType + " and " + rightType);
-        }
-
         // case only "string + string"
         if (leftType == ValueType.STRING && rightType == ValueType.STRING) {
             if (opeType == ADD) {
