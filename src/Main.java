@@ -17,7 +17,7 @@ public class Main {
         LexicalUnit first;
         Environment env;
         Node program;
-        String path = "test2.bas";
+        String path = "test3.bas";
         if (args.length > 0) {
             path = args[0];
         }

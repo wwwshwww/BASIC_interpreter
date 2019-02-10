@@ -3,8 +3,10 @@ Basicライクな言語のインタプリタだよ
 
 ## Getting Started
 1. `javac src/*/*.java`
-2. `javac src/Main.java`
-3. `java Main <basic file>`
+2. `cd src`
+3. `javac Main.java`
+4. take Basic file into src/
+5. `java Main <Basic file name>`
 
 ## Details
 ### Result View
